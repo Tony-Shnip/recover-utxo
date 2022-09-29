@@ -28,7 +28,7 @@ class DB {
 
   public openEnv() {
     const defaultOpt = {
-      path: '../../../dragon' + '/node/' + this.data,
+      path: this.root + '/node/' + this.data,
       mapSize: 0x8000000000,
       maxReaders: 126
     };

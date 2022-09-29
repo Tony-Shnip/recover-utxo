@@ -87,7 +87,7 @@ export class Utxo {
       if (tx.txOuts[i].address !== tx.txIns[0].address) {
         const shortAddress = Helpers.toShortAddress(tx.txOuts[i].address);
 
-        const key = 'un/' + shortAddress + '/' + tx.txIns[0].txOutId + '/1';
+        const key = 'un/' + shortAddress + '/' + tx.id + '/' + i;
 
         const unspentKey = Buffer.from(key);
 
