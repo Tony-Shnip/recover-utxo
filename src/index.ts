@@ -15,7 +15,7 @@ const utxo = new Utxo();
 
 // blockchain.getBlockByIndex(2, true)
 //   .then((res) => {
-//     console.log(res.data[1]);  
+//     console.log(res.data[1].txOuts);  
 //   })
 
 
@@ -27,12 +27,10 @@ const utxo = new Utxo();
 //   const block = await blockchain.getBlockByIndex(index, true)
 
 //   for (let i = 0; i < block.data.length; i++) {
-//     if (block.data[i].type !== 'coinbase' && block.data[i].txOuts.length > 2) {
+//     if (block.data[i].type === 'regular' && block.data[i].txOuts.length > 2) {
 //       utxo.checkUtxo(block.data[i]);
 //     }
 //   }
-
-//   return utxo.checkUtxo(block);
 // }
 
 // start(2)

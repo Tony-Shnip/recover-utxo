@@ -13,9 +13,7 @@ class DB {
 
   public constructor(data, options = {}) {
     this.DB_ENV = new lmdb.Env();
-    this.root = path.dirname(
-      path.dirname(path.dirname(fs.realpathSync(__filename)))
-    );
+    this.root = path.dirname(path.dirname(path.dirname(path.dirname(fs.realpathSync(__filename)))));
     this.data = data;
     this.options = options;
     this.connect();
@@ -28,7 +26,7 @@ class DB {
 
   public openEnv() {
     const defaultOpt = {
-      path: this.root + '/node/' + this.data,
+      path: this.root + '/dragon/node/' + this.data,
       mapSize: 0x8000000000,
       maxReaders: 126
     };
