@@ -1,0 +1,33 @@
+{
+  "name": "recover-utxo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm run compile",
+    "start": "node src/index.js",
+    "compile": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tony-Shnip/recover-utxo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tony-Shnip/recover-utxo/issues"
+  },
+  "homepage": "https://github.com/Tony-Shnip/recover-utxo#readme",
+  "dependencies": {
+    "lmdb-lib": "github:temtum/lmdb-lib",
+    "path": "^0.12.7",
+    "seedrandom": "2.4.4",
+    "zstd-lib": "github:temtum/zstd-lib"
+  },
+  "devDependencies": {
+    "@types/node": "11.11.3",
+    "@types/crypto-js": "3.1.43",
+    "ts-node": "3.3.0",
+    "typescript": "3.5.2"
+  }
+}
