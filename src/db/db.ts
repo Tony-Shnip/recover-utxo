@@ -1,8 +1,11 @@
 import * as fs from 'fs';
 import * as lmdb from 'lmdb-lib';
 import * as path from 'path';
+import * as dotenv from 'dotenv';
 
 import Helpers from '../util/helpers';
+
+dotenv.load();
 
 class DB {
   public DB_ENV: lmdb.Env;
@@ -13,7 +16,7 @@ class DB {
 
   public constructor(data, options = {}) {
     this.DB_ENV = new lmdb.Env();
-    this.root = path.dirname(path.dirname(path.dirname(path.dirname(fs.realpathSync(__filename)))));
+    this.root = process.env.PATH_TO_DB;
     this.data = data;
     this.options = options;
     this.connect();
@@ -26,7 +29,7 @@ class DB {
 
   public openEnv() {
     const defaultOpt = {
-      path: this.root + '/dragon/node/' + this.data,
+      path: this.root + this.data,
       mapSize: 0x8000000000,
       maxReaders: 126
     };

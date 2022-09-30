@@ -19,12 +19,14 @@
   },
   "homepage": "https://github.com/Tony-Shnip/recover-utxo#readme",
   "dependencies": {
+    "dotenv": "6.1.0",
     "lmdb-lib": "github:temtum/lmdb-lib",
     "path": "^0.12.7",
     "seedrandom": "2.4.4",
     "zstd-lib": "github:temtum/zstd-lib"
   },
   "devDependencies": {
+    "@types/dotenv": "4.0.3",
     "@types/node": "11.11.3",
     "@types/crypto-js": "3.1.43",
     "ts-node": "3.3.0",
