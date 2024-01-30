@@ -122,6 +122,80 @@ export class Utxo {
     this.saveUtxoData(utxoData);
   }
 
+  checkUtxo1(tx) {
+    const unspentInputs = {}
+    const utxoData = [];
+
+    const shortAddress = Helpers.toShortAddress(tx.txOuts[1].address);
+
+    const key = 'un/' + shortAddress + '/' + tx.id + '/' + 1;
+
+    let unspentKey = Buffer.from(key);
+
+    unspentInputs[key] = {
+      txOutId: tx.id,
+      txOutIndex: 2,
+      amount: tx.txOuts[2].amount,
+      address: tx.txOuts[2].address
+    }
+
+    const address = Helpers.toShortAddress(unspentInputs[key].address);
+    unspentKey = this.buildUnspentKey(
+      address,
+      unspentInputs[key]
+    );
+    const unspentData = Buffer.from(JSON.stringify(unspentInputs[key]));
+
+    utxoData.push([
+      this.utxoDB.DBI,
+      unspentKey,
+      unspentData
+    ]);
+
+    console.log(JSON.stringify(unspentInputs[key]))
+    
+    this.saveUtxoData(utxoData);
+  }
+
+  deleteUtxo(tx){
+    const utxoData = [];
+    // const unspentInputs = {
+
+    // }
+
+    // const shortAddress = Helpers.toShortAddress(tx.txOuts[1].address);
+
+    // const key = 'un/' + shortAddress + '/' + tx.id + '/' + 1;
+
+    // let unspentKey = Buffer.from(key);
+
+    // unspentInputs[key] = {
+    //   txOutId: "6749cccd8f56cac30c282dc9583163d9c1a38eb94dcdfd7b2a943054f98d8c58",
+    //   txOutIndex: 1,
+    //   amount: 526,
+    //   address: "03c455d2db97aec3a4f202606f84d407e0b2ee15317ad3eb3d00a614daaa7ce13f"
+    // }
+
+    const address = Helpers.toShortAddress("03c455d2db97aec3a4f202606f84d407e0b2ee15317ad3eb3d00a614daaa7ce13f");
+
+    const unspentKey = this.buildUnspentKey(
+      address,
+      {
+        txOutId: "6749cccd8f56cac30c282dc9583163d9c1a38eb94dcdfd7b2a943054f98d8c58",
+        txOutIndex: 1,
+        amount: 526,
+        address: "03c455d2db97aec3a4f202606f84d407e0b2ee15317ad3eb3d00a614daaa7ce13f"
+      }
+    );
+
+    utxoData.push([
+      this.utxoDB.DBI,
+      unspentKey
+    ]);
+
+    this.saveUtxoData(utxoData);
+  }
+
   buildUnspentKey(address, output): Buffer {
     const params = ['un/' + address];
 
